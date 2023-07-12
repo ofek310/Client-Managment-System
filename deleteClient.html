@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <h1>Delete Client</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="general">
+      <div class="links">
+        <a href="getAllClients.html">All Clients</a>
+        <a href="addClient.html">Add Client</a>
+        <a href="deleteClient.html" class="active">Delete Client</a>
+        <a href="filterClients.html">Filter Client</a>
+        <a href="getIpGeoInformation.html" >Ip Geo Information</a>
+        <a href="getAllClientsWithFilter.html" >All Client with filter</a>
+      </div>
+      <h4>Enter the id of the client that you would like to delete</h6>
+      <input type="text" id="clientID" placeholder="Enter client ID Input" />
+      <button id="callTheDeleteClientFunction">Delete Client</button>
+      <h8 id="responseStatus"></h8>
+      <h8 id="responseErrorMessage"></h8>
+    </div>
+    <script src="deleteClientJS.js"></script>
+  </body>
+</html>

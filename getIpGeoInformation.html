@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <h1>Get Ip Geo Information</h1>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="general">
+      <div class="links">
+        <a href="getAllClients.html">All Clients</a>
+        <a href="addClient.html">Add Client</a>
+        <a href="deleteClient.html">Delete Client</a>
+        <a href="filterClients.html">Filter Client</a>
+        <a href="getIpGeoInformation.html" class="active">Ip Geo Information</a>
+        <a href="getAllClientsWithFilter.html">All Client with filter</a>
+      </div>
+      <h4>Press the button to get all the Geo Ip Information</h4>
+      <button id="callIpGeoInformationFunction">Get Ip Geo Information</button>
+      <h8 id="responseStatus"></h8>
+      <h8 id="responseErrorMessage"></h8>
+      <div id="loadingIndicator" style="display: none">Loading...</div>
+      <div class="table-container">
+        <table class="table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="getIpGeoInformationJS.js"></script>
+  </body>
+</html>

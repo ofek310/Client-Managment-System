@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <h1>All Clients with Filter</h1>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="general">
+      <div class="links">
+        <a href="getAllClients.html">All Clients</a>
+        <a href="addClient.html">Add Client</a>
+        <a href="deleteClient.html">Delete Client</a>
+        <a href="filterClients.html">Filter Client</a>
+        <a href="getIpGeoInformation.html">Ip Geo Information</a>
+        <a href="getAllClientsWithFilter.html" class="active"
+          >All Client with filter</a
+        >
+      </div>
+      <h4>Press the button to get all the exsits clients</h4>
+      <button id="callTheGetAllFunction">Get All Exists Clients</button>
+      <h4>Enter all the filter details that you would like</h4>
+      <div class="input-container">
+        <input
+          class="allWithFilter"
+          type="text"
+          id="filterName"
+          placeholder="Enter the desired filter name"
+        />
+        <input
+          class="allWithFilter"
+          type="text"
+          id="filterID"
+          placeholder="Enter the desired filter id"
+        />
+        <input
+          class="allWithFilter"
+          type="text"
+          id="filterIP"
+          placeholder="Enter the desired filter ip"
+        />
+        <input
+          class="allWithFilter"
+          type="text"
+          id="filterPhone"
+          placeholder="Enter the desired filter phone"
+        />
+        <button id="callTheFilterClientFunction">Filter Client</button>
+      </div>
+      <h8 id="responseStatus"></h8>
+      <h8 id="responseErrorMessage"></h8>
+      <div class="table-container">
+        <table class="table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="filterClientsJS.js"></script>
+    <script src="getAllClientsJS.js"></script>
+  </body>
+</html>
