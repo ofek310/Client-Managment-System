@@ -2,37 +2,71 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <h1>Add Client</h1>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
   <body>
-    <div class="general">
-      <div class="links">
+    <section class="header">
+      <nav class="nav-links">
         <a href="getAllClients.html">All Clients</a>
         <a href="addClient.html" class="active">Add Client</a>
         <a href="deleteClient.html">Delete Client</a>
         <a href="filterClients.html">Filter Client</a>
-        <a href="getIpGeoInformation.html" >Ip Geo Information</a>
-        <a href="getAllClientsWithFilter.html" >All Client with filter</a>
+        <a href="getIpGeoInformation.html">Ip Geo Information</a>
+        <a href="getAllClientsWithFilter.html">All Client with filter</a>
+      </nav>
+    </section>
+    <section class="body">
+      <div class="general">
+        <h1>Add Client</h1>
+        <h4>Enter all the details of the client that you would like to add</h4>
+        <div class="input-place">
+          <i class="material-icons">account_circle</i>
+          <input
+            type="text"
+            id="clientName"
+            placeholder="Enter client Name Input"
+          />
+        </div>
+        <div class="input-place">
+          <i class="material-icons">badge</i>
+          <input
+            type="text"
+            id="clientID"
+            placeholder="Enter client ID Input"
+          />
+        </div>
+        <div class="input-place">
+          <i class="material-icons">vpn_lock</i>
+          <input
+            type="text"
+            id="clientIP"
+            placeholder="Enter client IP Input"
+          />
+        </div>
+        <div class="input-place">
+          <i class="material-icons">phone</i>
+          <input
+            type="text"
+            id="clientPhone"
+            placeholder="Enter client Phone Input"
+          />
+        </div>
+        <button id="callThePostClientFunction">Add Client</button>
+        <h8 id="responseStatus"></h8>
+        <h8 id="responseErrorMessage"></h8>
       </div>
-      <h4>Enter all the details of the client that you would like to add</h6>
-      <input
-        type="text"
-        id="clientName"
-        placeholder="Enter client Name Input"
-      />
-      <input type="text" id="clientID" placeholder="Enter client ID Input" />
-      <input type="text" id="clientIP" placeholder="Enter client IP Input" />
-      <input
-        type="text"
-        id="clientPhone"
-        placeholder="Enter client Phone Input"
-      />
-      <button id="callThePostClientFunction">Add Client</button>
-      <h8 id="responseStatus"></h8>
-      <h8 id="responseErrorMessage"></h8>
-    </div>
+    </section>
     <script src="addClientJS.js"></script>
   </body>
 </html>

@@ -14,6 +14,9 @@ document
   .getElementById("callTheDeleteClientFunction")
   .addEventListener("click", function () {
     document.getElementById("callTheDeleteClientFunction").disabled = true;
+    document
+      .getElementById("callTheDeleteClientFunction")
+      .classList.add("no-hover");
     var IDText = document.getElementById("clientID").value;
     var client = {
       ID: parseInt(IDText),
@@ -28,23 +31,26 @@ document
           if (response.ok) {
             document.getElementById("responseErrorMessage").innerHTML =
               "Client was deleted successfully";
-            document.getElementById(
-              "callTheDeleteClientFunction"
-            ).disabled = false;
+            disabledFalseButtonDelete();
           } else {
             return response.json().then((error) => {
-              throw new Error(error.error);
+              throw new Error(error.title);
             });
           }
         })
         .then((data) => {})
         .catch((error) => {
-          document.getElementById(
-            "callTheDeleteClientFunction"
-          ).disabled = false;
-          document.getElementById("responseErrorMessage").innerHTML = error;
+          disabledFalseButtonDelete();
+          document.getElementById("responseErrorMessage").innerHTML =
+            error.message;
         });
     } else {
-      document.getElementById("callTheDeleteClientFunction").disabled = false;
+      disabledFalseButtonDelete();
     }
   });
+function disabledFalseButtonDelete() {
+  document.getElementById("callTheDeleteClientFunction").disabled = false;
+  document
+    .getElementById("callTheDeleteClientFunction")
+    .classList.remove("no-hover");
+}

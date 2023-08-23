@@ -2,31 +2,41 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <h1>Get All Exsits Clients</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="general">
-      <div class="links">
+    <section class="header">
+      <nav class="nav-links">
         <a href="getAllClients.html" class="active">All Clients</a>
         <a href="addClient.html">Add Client</a>
         <a href="deleteClient.html">Delete Client</a>
         <a href="filterClients.html">Filter Client</a>
         <a href="getIpGeoInformation.html">Ip Geo Information</a>
         <a href="getAllClientsWithFilter.html">All Client with filter</a>
+      </nav>
+    </section>
+    <section class="body">
+      <div class="general">
+        <h1>Get All Exists Clients</h1>
+        <h4>Press the button to get all the exsits clients</h4>
+        <button id="callTheGetAllFunction">Get All Exists Clients</button>
+        <h8 id="responseStatus"></h8>
+        <h8 id="responseErrorMessage"></h8>
+        <div class="table-container">
+          <table class="table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-      <h4>Press the button to get all the exsits clients</h4>
-      <button id="callTheGetAllFunction">Get All Exists Clients</button>
-      <h8 id="responseStatus"></h8>
-      <h8 id="responseErrorMessage"></h8>
-      <div class="table-container">
-        <table class="table">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
+    </section>
     <script src="getAllClientsJS.js"></script>
   </body>
 </html>

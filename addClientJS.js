@@ -38,6 +38,9 @@ document
     var IPText = document.getElementById("clientIP").value;
     var PhoneText = document.getElementById("clientPhone").value;
     document.getElementById("callThePostClientFunction").disabled = true;
+    document
+      .getElementById("callThePostClientFunction")
+      .classList.add("no-hover");
     if (checkIfTheInputOk(NameText, IDText, IPText, PhoneText)) {
       var client = {
         Name: NameText,
@@ -53,19 +56,26 @@ document
         .then((response) => {
           document.getElementById("responseErrorMessage").innerHTML =
             "Client was added successfully";
-          document.getElementById("callThePostClientFunction").disabled = false;
+          disabledFalseButtonPost();
           if (!response.ok) {
             return response.json().then((error) => {
-              throw new Error(error.error);
+              throw new Error(error.title);
             });
           }
         })
         .then((data) => {})
         .catch((error) => {
-          document.getElementById("responseErrorMessage").innerHTML = error;
-          document.getElementById("callThePostClientFunction").disabled = false;
+          document.getElementById("responseErrorMessage").innerHTML =
+            error.message;
+          disabledFalseButtonPost();
         });
     } else {
-      document.getElementById("callThePostClientFunction").disabled = false;
+      disabledFalseButtonPost();
     }
   });
+function disabledFalseButtonPost() {
+  document.getElementById("callThePostClientFunction").disabled = false;
+  document
+    .getElementById("callThePostClientFunction")
+    .classList.remove("no-hover");
+}

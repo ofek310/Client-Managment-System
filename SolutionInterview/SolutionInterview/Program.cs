@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SolutionInterview;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +19,9 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader();
     });
 });
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("ConnectionStrings"));
+
 
 var app = builder.Build();
 
@@ -35,3 +42,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+    
+
+  

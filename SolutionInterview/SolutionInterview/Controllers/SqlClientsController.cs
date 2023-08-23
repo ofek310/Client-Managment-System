@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using SolutionInterview.Model;
 using SolutionInterview.ModelApi;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection.PortableExecutable;
-using System.Web.Http.Results;
 using static System.Net.WebRequestMethods;
 
 namespace SolutionInterview.Controllers
@@ -17,11 +13,22 @@ namespace SolutionInterview.Controllers
     [ApiController]
     public class SqlClientsController : ControllerBase
     {
+        //object connecting to sql sentence
+        private readonly string _connstring;
+        private static SqlConnection con;
+        private static SqlCommand cmd = null;
+
         public static HttpClient ApiClient { get; set; } = new HttpClient();
-        public static string connstring = "Data Source=DESKTOP-U7F5NS7; Initial Catalog= OrtInterviewDatabase;User ID=sa;Password=SqlPasswordOfek";
-        public static SqlConnection con = new SqlConnection(connstring);
-        public static SqlCommand cmd = null;
+        //public static string connstring = "Data Source=(local); Initial Catalog= OrtInterviewDatabase;Integrated Security=True";
+        //public static SqlConnection con = new SqlConnection(connstring);
+        //public static SqlCommand cmd = null;
         public static string errorMessage = "do not success to connect to sql";
+
+        public SqlClientsController(IOptions<AppSettings> appSettings)
+        {
+            _connstring = appSettings.Value.MyDatabaseConnection;
+            con = new SqlConnection(_connstring);
+        }
 
         [HttpGet("/GetAllExsitsClients")]
         public async Task<ActionResult> GetAllExistsClients()
@@ -47,11 +54,8 @@ namespace SolutionInterview.Controllers
             }
             catch (Exception ex)
             {
+                return Problem(ex.Message, statusCode: 500);
                 //need to return the exceptions
-                return new ObjectResult(new { error = ex.Message })
-                {
-                    StatusCode = 500
-                };
             }
             finally 
             {
@@ -89,10 +93,7 @@ namespace SolutionInterview.Controllers
             catch (Exception ex)
             {
                 Close();
-                return new ObjectResult(new { error = ex.Message })
-                {
-                    StatusCode = 500
-                };
+                return Problem(ex.Message, statusCode: 500);
             }
         }
         [HttpPost("/FilterClients")]
@@ -124,10 +125,7 @@ namespace SolutionInterview.Controllers
             catch (Exception ex)
             {
                 Close();
-                return new ObjectResult(new { error = ex.Message })
-                {
-                    StatusCode = 500
-                };
+                return Problem(ex.Message, statusCode: 500);
             }
             finally
             {
@@ -156,10 +154,7 @@ namespace SolutionInterview.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return new ObjectResult(new { error = ex.Message })
-                    {
-                        StatusCode = 500
-                    };
+                    return Problem(ex.Message, statusCode: 500);
                 }
             }
             else
@@ -242,10 +237,7 @@ namespace SolutionInterview.Controllers
                                 geoIpInforamtionList.Add(result);
                             }else if (response.StatusCode.Equals((System.Net.HttpStatusCode)429))
                             {//can be just 45 request after that return an error
-                                return new ObjectResult(new { error = "You have exceeded the request limit,to many request,the limit is 45" })
-                                {
-                                    StatusCode = 429
-                                };
+                                return Problem("You have exceeded the request limit, too many requests, the limit is 45", statusCode: 429);
                             }
                             else
                             {
@@ -255,10 +247,7 @@ namespace SolutionInterview.Controllers
                     }
                     catch (Exception ex)
                     {
-                        return new ObjectResult(new { error = ex.Message })
-                        {
-                            StatusCode = 500
-                        };
+                        return Problem(ex.Message, statusCode: 500);
                     }
                 }
             }

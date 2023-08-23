@@ -14,6 +14,7 @@ document
   .getElementById("callTheGetAllFunction")
   .addEventListener("click", function () {
     document.getElementById("callTheGetAllFunction").disabled = true;
+    document.getElementById("callTheGetAllFunction").classList.add("no-hover");
     clearAll();
     fetch("https://localhost:7077/GetAllExsitsClients")
       .then((response) => {
@@ -21,7 +22,7 @@ document
           return response.json();
         } else {
           return response.json().then((error) => {
-            throw new Error(error.error);
+            throw new Error(error.title);
           });
         }
       })
@@ -44,10 +45,15 @@ document
                 </tr>`;
         }
         tableBodyGetAliiClient.innerHTML = out;
-        document.getElementById("callTheGetAllFunction").disabled = false;
+        disabledFalseButtonGetAll();
       })
       .catch((error) => {
-        document.getElementById("responseErrorMessage").innerHTML = error;
-        document.getElementById("callTheGetAllFunction").disabled = false;
+        document.getElementById("responseErrorMessage").innerHTML =
+          error.message;
+        disabledFalseButtonGetAll();
       });
   });
+function disabledFalseButtonGetAll() {
+  document.getElementById("callTheGetAllFunction").disabled = false;
+  document.getElementById("callTheGetAllFunction").classList.remove("no-hover");
+}

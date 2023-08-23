@@ -2,7 +2,7 @@ function checkIfTheInputOk(NameText, IDText, IPText, PhoneText) {
   document.getElementById("responseErrorMessage").innerHTML = "";
   var validationNameRegex = /^[A-Za-z\s]+$/;
   var vaildationIPRegex = /^[\d.]*$/;
-  var validationPhoneRegex = /^[\d+\-""]*$/;
+  var validationPhoneRegex = /^[0-9+\-]+$/;
   if ((isNaN(parseInt(IDText)) || !isFinite(IDText)) && IDText.length > 0) {
     document.getElementById("responseErrorMessage").innerHTML =
       "The id filter is not a number, pay attention";
@@ -17,7 +17,7 @@ function checkIfTheInputOk(NameText, IDText, IPText, PhoneText) {
     return false;
   } else if (!validationPhoneRegex.test(PhoneText) && PhoneText.length > 0) {
     document.getElementById("responseErrorMessage").innerHTML =
-      "The phone filter can contain numbers or + or - or '', pay attention";
+      "The phone filter can contain numbers or + or - , pay attention";
     return false;
   }
   return true;
@@ -36,6 +36,9 @@ document
   .getElementById("callTheFilterClientFunction")
   .addEventListener("click", function () {
     document.getElementById("callTheFilterClientFunction").disabled = true;
+    document
+      .getElementById("callTheFilterClientFunction")
+      .classList.add("no-hover");
     clearAll();
     var NameText = document.getElementById("filterName").value;
     var IDText = document.getElementById("filterID").value;
@@ -61,7 +64,7 @@ document
             return response.json();
           } else {
             return response.json().then((error) => {
-              throw new Error(error.error);
+              throw new Error(error.title);
             });
           }
         })
@@ -84,17 +87,21 @@ document
                     </tr>`;
           }
           tableBodyFilterClient.innerHTML = out;
-          document.getElementById(
-            "callTheFilterClientFunction"
-          ).disabled = false;
+          disabledFalseButtonFilter();
         })
         .catch((error) => {
-          document.getElementById("responseErrorMessage").innerHTML = error;
-          document.getElementById(
-            "callTheFilterClientFunction"
-          ).disabled = false;
+          document.getElementById("responseErrorMessage").innerHTML =
+            error.message;
+          disabledFalseButtonFilter();
         });
     } else {
-      document.getElementById("callTheFilterClientFunction").disabled = false;
+      disabledFalseButtonFilter();
     }
   });
+
+function disabledFalseButtonFilter() {
+  document.getElementById("callTheFilterClientFunction").disabled = false;
+  document
+    .getElementById("callTheFilterClientFunction")
+    .classList.remove("no-hover");
+}

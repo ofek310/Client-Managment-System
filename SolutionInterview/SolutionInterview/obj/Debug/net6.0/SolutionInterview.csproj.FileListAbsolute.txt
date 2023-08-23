@@ -40,3 +40,8 @@ C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\obj\Debu
 C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\System.Net.Http.Formatting.dll
 C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\System.Web.Http.dll
 C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\ofekm\Desktop\OrtInterview\SolutionInterview\SolutionInterview\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

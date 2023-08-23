@@ -2,32 +2,45 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <h1>Get Ip Geo Information</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="general">
-      <div class="links">
+    <section class="header">
+      <nav class="nav-links">
         <a href="getAllClients.html">All Clients</a>
         <a href="addClient.html">Add Client</a>
         <a href="deleteClient.html">Delete Client</a>
         <a href="filterClients.html">Filter Client</a>
         <a href="getIpGeoInformation.html" class="active">Ip Geo Information</a>
         <a href="getAllClientsWithFilter.html">All Client with filter</a>
+      </nav>
+    </section>
+    <section class="body">
+      <div class="general">
+        <h1>Get Ip Geo Information</h1>
+        <h4>Press the button to get all the Geo Ip Information</h4>
+        <button id="callIpGeoInformationFunction">
+          Get Ip Geo Information
+        </button>
+        <h8 id="responseStatus"></h8>
+        <h8 id="responseErrorMessage"></h8>
+        <div id="loadingIndicator" style="display: none">Loading...</div>
+        <button id="googleMap" style="display: none">Show In Google Map</button>
+        <div class="table-container">
+          <table class="table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-      <h4>Press the button to get all the Geo Ip Information</h4>
-      <button id="callIpGeoInformationFunction">Get Ip Geo Information</button>
-      <h8 id="responseStatus"></h8>
-      <h8 id="responseErrorMessage"></h8>
-      <div id="loadingIndicator" style="display: none">Loading...</div>
-      <div class="table-container">
-        <table class="table">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
+    </section>
     <script src="getIpGeoInformationJS.js"></script>
   </body>
 </html>
