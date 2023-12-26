@@ -35,25 +35,25 @@
             class="allWithFilter"
             type="text"
             id="filterName"
-            placeholder="Enter the desired filter name"
+            placeholder="filter name"
           />
           <input
             class="allWithFilter"
             type="text"
             id="filterID"
-            placeholder="Enter the desired filter id"
+            placeholder="filter id"
           />
           <input
             class="allWithFilter"
             type="text"
             id="filterIP"
-            placeholder="Enter the desired filter ip"
+            placeholder="filter ip"
           />
           <input
             class="allWithFilter"
             type="text"
             id="filterPhone"
-            placeholder="Enter the desired filter phone"
+            placeholder="filter phone"
           />
           <button id="callTheFilterClientFunction">Filter Client</button>
         </div>
@@ -65,8 +65,13 @@
             <tbody></tbody>
           </table>
         </div>
+        <div id="pagination">
+          <span id="pagination_text"></span>
+          <div id="pagination_control_buttons"></div>
+        </div>
       </div>
     </section>
+    <script src="pagenation.js"></script>
     <script src="filterClientsJS.js"></script>
     <script src="getAllClientsJS.js"></script>
   </body>

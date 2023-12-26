@@ -15,6 +15,9 @@ var googleMapsButton = document.getElementById("googleMap");
 document
   .getElementById("callIpGeoInformationFunction")
   .addEventListener("click", function () {
+    //reset all
+    document.getElementById("pagination_text").innerHTML = "";
+    document.getElementById("pagination_control_buttons").innerHTML = "";
     document.getElementById("callIpGeoInformationFunction").disabled = true;
     document
       .getElementById("callIpGeoInformationFunction")
@@ -32,53 +35,9 @@ document
         }
       })
       .then((result) => {
-        tableHead.innerHTML = `<tr>
-                                    <th></th>
-                                    <th>Id Client</th>
-                                    <th>Ip</th>
-                                    <th>Country</th>
-                                    <th>Region</th>
-                                    <th>RegionName</th>
-                                    <th>City</th>
-                                    <th>Lat</th>
-                                    <th>Lon</th>
-                                </tr>`;
-
-        let out = "";
-        for (const r of result) {
-          out += `
-                  <tr>
-                      <td><input type="checkbox" class="checkBoxButton"></td>
-                      <td>${r.clientId}</td>
-                      <td>${r.query}</td>
-                      <td>${r.country}</td>
-                      <td>${r.region}
-                      <td>${r.regionName}</td>
-                      <td>${r.city}</td>
-                      <td>${r.lat}</td>
-                      <td>${r.lon}</td>
-                  </tr>`;
-        }
-        tableBody.innerHTML = out;
+        reset(result);
         document.getElementById("loadingIndicator").style.display = "none";
         disabledFalseButtonGeo();
-        //get all the checkboxes
-        var checkboxes = document.querySelectorAll(".checkBoxButton");
-        //add event Listener to all the checkboxes
-        checkboxes.forEach(function (checkbox) {
-          checkbox.addEventListener("change", function () {
-            var checkedCheckBoxes = document.querySelectorAll(
-              ".checkBoxButton:checked"
-            );
-            var count = checkedCheckBoxes.length;
-
-            if (count == 1) {
-              googleMapsButton.style.display = "block";
-            } else {
-              googleMapsButton.style.display = "none";
-            }
-          });
-        });
       })
       .catch((error) => {
         document.getElementById("responseErrorMessage").innerHTML =
@@ -109,6 +68,32 @@ document.getElementById("googleMap").addEventListener("click", function () {
   });
 });
 
+//will override the additionalImplementation in pagenation.js
+function additionalImplementation() {
+  googleMapsButton.style.display = "none";
+  var tr = document.querySelectorAll("tr");
+  tr[0].innerHTML = "<th>openMap</th>" + tr[0].innerHTML;
+  for (i = 1; i < tr.length; i++) {
+    //over all the tr in the table and add the check box button to every tr
+    tr[i].innerHTML =
+      `<td><input type="checkbox" class="checkBoxButton" id="checkBoxButton${i}"></td>` +
+      tr[i].innerHTML;
+    document
+      .getElementById("checkBoxButton" + i)
+      .addEventListener("change", function () {
+        var checkedCheckBoxes = document.querySelectorAll(
+          ".checkBoxButton:checked"
+        );
+        var count = checkedCheckBoxes.length;
+
+        if (count == 1) {
+          googleMapsButton.style.display = "block";
+        } else {
+          googleMapsButton.style.display = "none";
+        }
+      });
+  }
+}
 function disabledFalseButtonGeo() {
   document.getElementById("callIpGeoInformationFunction").disabled = false;
   document

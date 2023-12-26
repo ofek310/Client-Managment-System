@@ -9,10 +9,14 @@ function clearAll() {
 const tableGetAllClient = document.querySelector("table");
 const tableHeadGetAllClient = tableGetAllClient.querySelector("thead");
 const tableBodyGetAliiClient = tableGetAllClient.querySelector("tbody");
+var arrayResult = [];
 
 document
   .getElementById("callTheGetAllFunction")
   .addEventListener("click", function () {
+    //reset all
+    document.getElementById("pagination_text").innerHTML = "";
+    document.getElementById("pagination_control_buttons").innerHTML = "";
     document.getElementById("callTheGetAllFunction").disabled = true;
     document.getElementById("callTheGetAllFunction").classList.add("no-hover");
     clearAll();
@@ -27,24 +31,7 @@ document
         }
       })
       .then((result) => {
-        tableHeadGetAllClient.innerHTML = `<tr>
-                                  <th>Name</th>
-                                  <th>ID</th>
-                                  <th>IP</th>
-                                  <th>Phone</th>
-                              </tr>`;
-
-        let out = "";
-        for (const r of result) {
-          out += `
-                <tr>
-                    <td>${r.Name}</td>
-                    <td>${r.ID}</td>
-                    <td>${r.IP}
-                    <td>${r.Phone}</td>
-                </tr>`;
-        }
-        tableBodyGetAliiClient.innerHTML = out;
+        reset(result);
         disabledFalseButtonGetAll();
       })
       .catch((error) => {

@@ -237,7 +237,7 @@ namespace SolutionInterview.Controllers
                                 geoIpInforamtionList.Add(result);
                             }else if (response.StatusCode.Equals((System.Net.HttpStatusCode)429))
                             {//can be just 45 request after that return an error
-                                return Problem("You have exceeded the request limit, too many requests, the limit is 45", statusCode: 429);
+                                return Problem(title:"You have exceeded the request limit, too many requests, the limit is 45", statusCode: 429);
                             }
                             else
                             {
@@ -247,7 +247,7 @@ namespace SolutionInterview.Controllers
                     }
                     catch (Exception ex)
                     {
-                        return Problem(ex.Message, statusCode: 500);
+                        return Problem(title:ex.Message, statusCode: 500);
                     }
                 }
             }

@@ -35,6 +35,9 @@ const tableBodyFilterClient = tableFilterClient.querySelector("tbody");
 document
   .getElementById("callTheFilterClientFunction")
   .addEventListener("click", function () {
+    //reset all
+    document.getElementById("pagination_text").innerHTML = "";
+    document.getElementById("pagination_control_buttons").innerHTML = "";
     document.getElementById("callTheFilterClientFunction").disabled = true;
     document
       .getElementById("callTheFilterClientFunction")
@@ -69,24 +72,7 @@ document
           }
         })
         .then((result) => {
-          tableHeadFilterClient.innerHTML = `<tr>
-                                      <th>Name</th>
-                                      <th>ID</th>
-                                      <th>IP</th>
-                                      <th>Phone</th>
-                                  </tr>`;
-
-          let out = "";
-          for (const r of result) {
-            out += `
-                    <tr>
-                        <td>${r.Name}</td>
-                        <td>${r.ID}</td>
-                        <td>${r.IP}
-                        <td>${r.Phone}</td>
-                    </tr>`;
-          }
-          tableBodyFilterClient.innerHTML = out;
+          reset(result);
           disabledFalseButtonFilter();
         })
         .catch((error) => {
